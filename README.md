@@ -14,13 +14,13 @@ Keep your car well watered and fed! Track your past and future maintenance, repa
 
 ## Pre-planning:
 ### Whiteboard Wireframes:
-(https://github.com/npupillo/project_1_car_tracker/blob/master/preplanning_materials/image_1.jpg)
-(https://github.com/npupillo/project_1_car_tracker/blob/master/preplanning_materials/image_2.jpg)
-(https://github.com/npupillo/project_1_car_tracker/blob/master/preplanning_materials/image_3.jpg)
-(https://github.com/npupillo/project_1_car_tracker/blob/master/preplanning_materials/image_4.jpg)
+![image_1](https://github.com/npupillo/project_1_car_tracker/blob/master/preplanning_materials/image_1.jpg)
+![image_2](https://github.com/npupillo/project_1_car_tracker/blob/master/preplanning_materials/image_2.jpg)
+![image_3](https://github.com/npupillo/project_1_car_tracker/blob/master/preplanning_materials/image_3.jpg)
+![image_4](https://github.com/npupillo/project_1_car_tracker/blob/master/preplanning_materials/image_4.jpg)
 
 ### Entity Relationship Model - diagram of table structures
-(https://github.com/npupillo/project_1_car_tracker/blob/master/preplanning_materials/relationships_diagram.jpg)
+![erd](https://github.com/npupillo/project_1_car_tracker/blob/master/preplanning_materials/relationships_diagram.jpg)
 
 
 
