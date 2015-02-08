@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :vehicles
-  resources :vendors
+  resources :vehicles do
+      resources :vendors
+  end
   resources :categories
 
   # The priority is based upon order of creation: first created -> highest priority.
