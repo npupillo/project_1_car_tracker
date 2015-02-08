@@ -1,7 +1,7 @@
 class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
-      t.string :name, null: false
+      t.string :name
       t.belongs_to :vehicle, index: true
       t.belongs_to :category, index: true
       t.belongs_to :vendor, index: true

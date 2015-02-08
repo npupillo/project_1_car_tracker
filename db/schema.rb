@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(version: 20150208000736) do
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
   end
 
   create_table "events", force: :cascade do |t|
-    t.string  "name",        null: false
+    t.string  "name"
     t.integer "vehicle_id"
     t.integer "category_id"
     t.integer "vendor_id"
@@ -36,16 +36,16 @@ ActiveRecord::Schema.define(version: 20150208000736) do
   add_index "events", ["vendor_id"], name: "index_events_on_vendor_id", using: :btree
 
   create_table "vehicles", force: :cascade do |t|
-    t.string  "nickname",      null: false
-    t.string  "make",          null: false
-    t.string  "model",         null: false
-    t.integer "year",          null: false
-    t.integer "mileage",       null: false
-    t.date    "purchase_date", null: false
+    t.string  "nickname"
+    t.string  "make"
+    t.string  "model"
+    t.integer "year"
+    t.integer "mileage"
+    t.date    "purchase_date"
   end
 
   create_table "vendors", force: :cascade do |t|
-    t.string "name",    null: false
+    t.string "name"
     t.string "address"
     t.string "phone"
     t.string "website"

@@ -4,4 +4,6 @@ class Vehicle < ActiveRecord::Base
   has_many :categories, through: :events
 
   accepts_nested_attributes_for :events, :vendors, :categories
+
+  validates :nickname, :make, :model, :year, :mileage, :purchase_date, presence: true
 end

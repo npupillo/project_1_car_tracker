@@ -10,3 +10,6 @@ vend_squantum = Vendor.create!(name: 'Squantum Auto')
 cat_maint = Category.create!(name: 'maintenance')
 cat_repair = Category.create!(name: 'repair')
 
+#Create events for roxanne
+roxanne.events.create(name: 'event1 for roxy', category: cat_maint, vendor: vend_squantum)
+roxanne.events.create(name: 'event2 for roxy', category: cat_repair, vendor: vend_bagnell)

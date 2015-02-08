@@ -1,7 +1,7 @@
 class CreateVendors < ActiveRecord::Migration
   def change
     create_table :vendors do |t|
-      t.string :name, null: false
+      t.string :name
       t.string :address
       t.string :phone
       t.string :website
