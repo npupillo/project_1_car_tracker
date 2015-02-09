@@ -1,0 +1,40 @@
+<%= form_for @vehicle do |f| %>
+  <% if @vehicle.errors.any? %>
+  <div id="error_explanation">
+
+    <h2>
+      Sorry, please try again:
+    </h2>
+
+  <ul>
+    <%= @vehicle.errors.full_messages.each do |msg| %>
+    <li>
+      <%= msg %>
+    </li>
+    <% end %>
+  </ul>
+  </div>
+  <% end %>
+
+  <%= f.label :nickname %> <br />
+  <%= f.text_field :nickname %> <br />
+
+  <%= f.label :make %> <br />
+  <%= f.text_field :make %> <br />
+
+  <%= f.label :model %> <br />
+  <%= f.text_field :model %> <br />
+
+  <%= f.label :year %> <br />
+  <%= f.text_field :year %> <br />
+
+  <%= f.label :mileage %> <br />
+  <%= f.text_field :mileage %> <br />
+
+  <%= f.label :purchase_date %> <br />
+  <%= f.text_field :purchase_date %> <br />
+
+  <%= f.submit %>
+<% end %>
+
+<%= link_to 'Back', :back %>

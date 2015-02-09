@@ -1,0 +1,36 @@
+<h1>Vehicles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vehicle Nickname</th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>Mileage</th>
+      <th>Purchase Date</th>
+      <th>Events</th>
+      <th>vendors</th>
+      <th>Categories</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vehicles.each do |v| %>
+      <tr>
+        <td><%= link_to v.nickname, vehicle_path(v) %></td>
+        <td><%= v.make %></td>
+        <td><%= v.model %></td>
+        <td><%= v.year %></td>
+        <td><%= v.mileage %></td>
+        <td><%= v.purchase_date %></td>
+        <td><%= v.events.count %></td>
+        <td><%= v.vendors.count %></td>
+        <td><%= v.categories.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to 'Create New Vehicle', new_vehicle_path %>

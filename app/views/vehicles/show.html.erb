@@ -1,0 +1,30 @@
+<h2>
+  <%= @vehicle.nickname %>
+</h2>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>Mileage</th>
+      <th>Purchase Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @vehicle.make %></td>
+        <td><%= @vehicle.model %></td>
+        <td><%= @vehicle.year %></td>
+        <td><%= @vehicle.mileage %></td>
+        <td><%= @vehicle.purchase_date %></td>
+      </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Delete', vehicle_path(@vehicle), method: :delete, data: {confirm: 'Are you sure?'} %> |
+<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
+<%= link_to 'All Vehicles', vehicles_path %>
