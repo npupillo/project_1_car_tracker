@@ -18,8 +18,13 @@ class EventsController < ApplicationController
 
   def create
     @event = @vehicle.events.new(event_params)
+
+    #GET the vendor id that we want to add to this event from the select dropdown in the form
+    @vehicle.events << Event.find(params[:event][:vendor_id])
+
     if @event.save
-      redirect_to vehicle_path(@vehicle)
+      redirect_to vehicle_path(@vehicle) #redirect to vehicle show
+      # redirect_to vehicles_path #redirect to vehicles index
     else
       render 'new'
     end

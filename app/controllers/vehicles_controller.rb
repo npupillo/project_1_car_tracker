@@ -15,6 +15,9 @@ class VehiclesController < ApplicationController
 
   def create
     @vehicle = Vehicle.new(vehicle_params)
+
+    #GET the vendor id that we want to add to this event from by the select dropdown in the vehicles form
+
     if @vehicle.save
       redirect_to action: :index
     else
