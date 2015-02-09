@@ -28,3 +28,18 @@
 <%= link_to 'Delete', vehicle_path(@vehicle), method: :delete, data: {confirm: 'Are you sure?'} %> |
 <%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
 <%= link_to 'All Vehicles', vehicles_path %>
+<hr>
+<!-- Show all events for this vehicle -->
+<h4>Events: <%= @vehicle.events.count %></h4>
+  <% @vehicle.events.each do |event| %>
+  <ul>
+    <li>
+    Name: <%= event.name %><br>
+    Cost: <%= event.cost %><br>
+    Event Date: <%= event.event_date %><br>
+    Due Date: <%= event.due_date %><br>
+    Notes: <%= event.notes %><br>
+    </li>
+  </ul>
+  <% end %>
+
