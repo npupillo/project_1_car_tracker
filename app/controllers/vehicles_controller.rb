@@ -1,4 +1,5 @@
 class VehiclesController < ApplicationController
+  # set the vehicle instance for some actions
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -11,6 +12,7 @@ class VehiclesController < ApplicationController
 
   def show
   end
+
   def create
     @vehicle = Vehicle.new(vehicle_params)
     if @vehicle.save
@@ -21,7 +23,6 @@ class VehiclesController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -40,6 +41,7 @@ class VehiclesController < ApplicationController
 
   private
   def set_vehicle
+    logger.debug "invoking set_event"
     @vehicle = Vehicle.find(params[:id])
   end
   def vehicle_params
