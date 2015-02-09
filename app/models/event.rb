@@ -1,9 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :vehicle
-  has_many :vendors
-  has_many :categories
-
-  accepts_nested_attributes_for :vendors, :categories
+  belongs_to :vendor
+  belongs_to :category
 
   validates :name, presence: true
 end
