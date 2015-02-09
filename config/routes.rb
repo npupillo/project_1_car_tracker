@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :vehicles do
-      resources :vendors
+      resources :events
   end
+  resources :vendors
   resources :categories
 
   # The priority is based upon order of creation: first created -> highest priority.
