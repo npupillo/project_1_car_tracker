@@ -1,3 +1,4 @@
+<%= link_to 'All Vehicles', vehicles_path %>
 <h2>
   <%= @vehicle.nickname %>
 </h2>
@@ -26,11 +27,12 @@
 </table>
 
 <%= link_to 'Delete', vehicle_path(@vehicle), method: :delete, data: {confirm: 'Are you sure?'} %> |
-<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
-<%= link_to 'All Vehicles', vehicles_path %>
+<%= link_to 'Edit', edit_vehicle_path(@vehicle) %>
 <hr>
 <!-- Show all events for this vehicle -->
-<h4>Events: <%= @vehicle.events.count %></h4>
+<h4>Number of Events: <%= @vehicle.events.count %></h4>
+<%= link_to 'Create New Event', new_vehicle_event_path(@vehicle) %>
+
   <% @vehicle.events.each do |event| %>
   <ul>
     <li>
@@ -41,6 +43,7 @@
     Event Date: <%= event.event_date %><br>
     Due Date: <%= event.due_date %><br>
     Notes: <%= event.notes %><br>
+    Vendor: <%= event.vendor_id%><br>
     </li>
   </ul>
   <% end %>

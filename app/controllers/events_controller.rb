@@ -5,11 +5,24 @@ class EventsController < ApplicationController
   #set the event instance for some actions
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   def index
-    @vehicle = Vehicle.find(params[:vehicle_id])
+    # @vehicle = Vehicle.find(params[:vehicle_id])
     @events = @vehicle.events
   end
 
+  def new
+    @event = @vehicle.events.new
+  end
+
   def show
+  end
+
+  def create
+    @event = @vehicle.events.new(event_params)
+    if @event.save
+      redirect_to vehicle_path(@vehicle)
+    else
+      render 'new'
+    end
   end
 
   def edit

@@ -18,16 +18,16 @@ RSpec.describe EventsController do
     { name: nil, category: cat_repair, vendor: vendor_abc, cost: 130.00, event_date: '2015-02-15', due_date: '2015-02-15', notes: 'free wipers'}
   }
 
-  describe 'GET index' do
-    it 'has a 200 status code' do
-      get :index
-      expect(response.status).to eq 200
-    end
+  # describe 'GET index' do
+    # it 'has a 200 status code' do
+    #   get :index
+    #   expect(response.status).to eq 200
+    # end
 
-  #   it 'renders the index template' do
-  #     get :index
-  #     expect(response).to render_template('index')
-  #   end
+    # it 'renders the index template' do
+    #   get :index
+    #   expect(response).to render_template('index')
+    # end
 
   #   it 'assigns @events' do
   #     events = Event.all
@@ -180,6 +180,6 @@ RSpec.describe EventsController do
   #     delete :destroy, id: event
   #     expect(response).to redirect_to events_path
   #   end
-  end #describe 'DELETE destroy'
+  # end #describe 'DELETE destroy'
 
 end
