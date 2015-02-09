@@ -1,0 +1,16 @@
+<h1>Vendors</h1>
+
+  <% @vendors.each do |v| %>
+  <ul>
+    <li>
+    <%= link_to 'Edit', edit_vendor_path(v)%> <br>
+    Name: <%= v.name %><br>
+    Address: <%= v.address %><br>
+    Phone: <%= v.phone %><br>
+    Website: <%= v.website %><br>
+    Hours: <%= v.hours %><br>
+    </li>
+  </ul>
+  <% end %>
+
+<%= link_to 'Create New Vendor', new_vendor_path %>
