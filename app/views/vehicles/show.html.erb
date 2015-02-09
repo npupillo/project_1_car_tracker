@@ -34,6 +34,8 @@
   <% @vehicle.events.each do |event| %>
   <ul>
     <li>
+    <%= link_to 'Edit', edit_vehicle_event_path(@vehicle, event) %> |
+    <%= link_to 'Delete', vehicle_path(@vehicle), method: :delete, data: {confirm: 'Are you sure?'} %><br>
     Name: <%= event.name %><br>
     Cost: <%= event.cost %><br>
     Event Date: <%= event.event_date %><br>

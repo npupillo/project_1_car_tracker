@@ -1,0 +1,21 @@
+<%= form_for [@vehicle, @event] do |f| %>
+
+  <%= f.label :name %> <br />
+  <%= f.text_field :name %> <br />
+
+  <%= f.label :cost %> <br />
+  <%= f.text_field :cost %> <br />
+
+  <%= f.label :event_date %> <br />
+  <%= f.text_field :event_date %> <br />
+
+  <%= f.label :due_date %> <br />
+  <%= f.text_field :due_date %> <br />
+
+  <%= f.label :notes %> <br />
+  <%= f.text_field :notes %> <br />
+
+  <%= f.submit %>
+<% end %>
+
+<%= link_to 'Back', :back %>

@@ -12,13 +12,30 @@ class EventsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @event.update(event_params)
+      redirect_to vehicle_path(@vehicle), notice: 'Event updated.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @vehicle = @event.vehicle
+    @event.destroy
+      redirect_to @vehicle
+  end
+
 private
   def set_vehicle
     @vehicle = Vehicle.find(params[:vehicle_id])
   end
   def set_event
     logger.debug "invoking set_event"
-    @event = @vehicle.events.find(params[:id])
+    @event = Event.find(params[:id])
   end
   def event_params
     params.require(:event).permit(:name)
