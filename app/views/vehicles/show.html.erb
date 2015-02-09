@@ -43,8 +43,16 @@
     Event Date: <%= event.event_date %><br>
     Due Date: <%= event.due_date %><br>
     Notes: <%= event.notes %><br>
-    Vendor: <%= event.vendor_id %><br>  <!-- #event.vendor.name -->
-    Category: <%= event.category_id %><br> <!-- #event.category.name -->
+
+    <!-- #event.vendor.name and
+    #event.category.name
+    aren't working after Create New Event -->
+
+    <!-- #event.vendor_id workaround -->
+    Vendor: <%= event.vendor.name %><br>
+
+    <!-- #event.category_id workaround -->
+    Category: <%= event.category.name %><br>
 
 
     </li>

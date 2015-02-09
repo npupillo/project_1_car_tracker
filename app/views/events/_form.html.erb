@@ -7,15 +7,16 @@
   <%= f.text_field :cost %> <br />
 
   <%= f.label :event_date %> <br />
-  <%= f.text_field :event_date %> <br />
+  <%= f.date_select :event_date %> <br />
 
   <%= f.label :due_date %> <br />
-  <%= f.text_field :due_date %> <br />
+  <%= f.date_select :due_date %> <br />
 
   <%= f.label :notes %> <br />
   <%= f.text_field :notes %> <br />
 
   <%= f.label :vendors, value: 'Select Vendor' %> <br />
+  <!-- Generate an html select, the list will be all Vendors -->
   <%= f.collection_select :vendor_id, Vendor.all, :id, :name %> <br />
 
   <%= f.label :categories, value: 'Select Category' %> <br />
