@@ -1,4 +1,3 @@
-require 'pry-byebug'
 class EventsController < ApplicationController
   # set the vehicle instance for all actions
   before_action :set_vehicle
@@ -20,8 +19,7 @@ class EventsController < ApplicationController
   def create
     @event = @vehicle.events.new(event_params)
 
-# binding.pry
-    #GET the vendor id that we want to add to this event from the select dropdown in the form
+    #GET the vendor_id & category_id that we want to add to this event from the select dropdown in the form
     @event.vendor = Vendor.find(params[:event][:vendor_id])
     @event.category = Category.find(params[:event][:category_id])
 
@@ -61,6 +59,8 @@ private
     logger.debug "invoking set_event"
     @event = Event.find(params[:id])
   end
+
+  # Allow params for event and for vendor & category
   def event_params
     params.require(:event).permit(:name, :vehicle, :vendor, :category, :cost, :event_date, :due_date, :notes, vendors_attributes: [:id, :name, :address, :phone, :website, :hours, :notes], categories_attributes: [:id, :name])
   end
