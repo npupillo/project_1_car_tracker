@@ -11,175 +11,154 @@ RSpec.describe EventsController do
   let(:category) {
     Category.create!(name: 'repair')
   }
-  let(:valid_attributes) {
-    { name: 'broken windshield', category: cat_repair, vendor: vendor_abc, cost: 130.00, event_date: '2015-02-15', due_date: '2015-02-15', notes: 'free wipers'}
+  let(:valid_event_attributes) {
+    { name: 'broken windshield', category: category, vendor: vendor, cost: 130.00, event_date: '2015-02-15', due_date: '2015-02-15', notes: 'free wipers'}
   }
-  let(:invalid_attributes) {
-    { name: nil, category: cat_repair, vendor: vendor_abc, cost: 130.00, event_date: '2015-02-15', due_date: '2015-02-15', notes: 'free wipers'}
+  let(:invalid_event_attributes) {
+    { name: nil, category: category, vendor: vendor, cost: 130.00, event_date: '2015-02-15', due_date: '2015-02-15', notes: 'free wipers'}
   }
 
-  # describe 'GET index' do
-    # it 'has a 200 status code' do
-    #   get :index
-    #   expect(response.status).to eq 200
-    # end
+  before(:all) do
+    Event.destroy_all
+    Vehicle.destroy_all
+    Vendor.destroy_all
+    Category.destroy_all
+  end
 
-    # it 'renders the index template' do
-    #   get :index
-    #   expect(response).to render_template('index')
-    # end
+  describe 'GET new' do
+    it 'has a 200 status code' do
+      get :new, vehicle_id: vehicle
+      expect(response.status).to eq 200
+    end
 
-  #   it 'assigns @events' do
-  #     events = Event.all
-  #     get :index
-  #     expect(assigns(:events)).to eq events
-  #   end
-  # end #describe 'GET index'
+    it 'renders the new template' do
+      get :new, vehicle_id: vehicle
+      expect(response).to render_template('new')
+    end
 
-  # describe 'GET new' do
-  #   it 'has a 200 status code' do
-  #     get :new
-  #     expect(response.status).to eq 200
-  #   end
+    it 'assigns @event' do
+      get :new, vehicle_id: vehicle
+      expect(assigns(:event)).to be_a_new Event
+    end
+  end #describe 'GET new'
 
-  #   it 'renders the new template' do
-  #     get :new
-  #     expect(response).to render_template('new')
-  #   end
+  describe 'POST create' do
+    context 'with valid attributes' do
+      it 'saves a new event' do
+        expect {
+          post :create, event: valid_event_attributes, vehicle_id: vehicle
+        }.to change(Event, :count).by 1
+      end
 
-  #   it 'assigns @event' do
-  #     get :new
-  #     expect(assigns(:event)).to be_a_new Event
-  #   end
-  # end #describe 'GET new'
+      it 'assigns @event' do
+        post :create, event: valid_event_attributes, vehicle_id: vehicle
+        expect(assigns(:event)).to be_an Event
+        expect(assigns(:event)).to be_persisted
+      end
 
-  # describe 'GET show' do
-  #   it 'has a 200 status code' do
-  #     event = Event.create!(valid_attributes)
-  #     get :show, id: event
-  #     expect(response.status).to eq 200
-  #   end
+      it 'redirects to the vehicle' do
+        post :create, event: valid_event_attributes, vehicle_id: vehicle
+        expect(response).to redirect_to(vehicle_path(vehicle))
+      end
+    end # context
 
-  #   it 'renders the show template' do
-  #     event = Event.create!(valid_attributes)
-  #     get :show, id: event
-  #     expect(response).to render_template('show')
-  #   end
+    context 'with invalid attributes' do
+      it 'assigns @event, but does not save a new event' do
+        post :create, event: invalid_event_attributes, vehicle_id: vehicle
+        expect(assigns(:event)).to be_a_new Event
+      end
 
-  #   it 'assigns @event' do
-  #     event = Event.create!(valid_attributes)
-  #     get :show, id: event
-  #     expect(assigns(:event)).to eq event
-  #   end
-  # end #describe 'GET show'
+      it 're-renders the new template' do
+        post :create, event: invalid_event_attributes, vehicle_id: vehicle
+        expect(response).to render_template 'new'
+      end
+    end
+  end #describe 'POST create'
 
-  # describe 'POST create' do
-  #   context 'with valid attributes' do
-  #     it 'saves a new event' do
-  #       expect {
-  #         post :create, event: valid_attributes
-  #       }.to change(Event, :count).by 1
-  #     end
+  describe 'GET edit' do
+    context 'with show name' do
+      let(:event) {
+        vehicle.events.create!(name: 'The New Event Name')
+      }
 
-  #     it 'assigns @event' do
-  #       post :create, event: valid_attributes
-  #       expect(assigns(:event)).to be_an Event
-  #       expect(assigns(:event)).to be_persisted
-  #     end
+      it 'has a 200 status code' do
+        get :edit, vehicle_id: vehicle, id: event
+        expect(response.status).to eq 200
+      end
 
-  #     it 'redirects to the created event' do
-  #       post :create, event: valid_attributes
-  #       expect(response).to redirect_to events_path
-  #     end
-  #   end
+      it 'renders the edit template' do
+        get :edit,  vehicle_id: vehicle, id: event
+        expect(response).to render_template('edit')
+      end
 
-  #   context 'with invalid attributes' do
-  #     it 'assigns @event, but does not save a new event' do
-  #       post :create, event: invalid_attributes
-  #       expect(assigns(:event)).to be_a_new Event
-  #     end
+      it 'assigns @event' do
+        get :edit,  vehicle_id: vehicle, id: event
+        expect(assigns(:event)).to eq event
+      end
+    end # context
+  end # 'GET edit'
 
-  #     it 're-renders the new template' do
-  #       post :create, event: invalid_attributes
-  #       expect(response).to render_template 'new'
-  #     end
-  #   end
-  # end #describe 'POST create'
+  describe 'PATCH update' do
+    context 'with valid attributes' do
+      let(:new_event_valid_attributes) {
+        { name: 'This Is A New Event' }
+      }
 
-  # describe 'GET edit' do
-  #   it 'has a 200 status code' do
-  #     event = Event.create!(valid_attributes)
-  #     get :edit, id: event
-  #     expect(response.status).to eq 200
-  #   end
+        it 'updates the requested event' do
+          event = Event.create!(valid_event_attributes)
+          vehicle.events << event
+          patch :update, vehicle_id: vehicle, id: event, event: new_event_valid_attributes
+          event.reload
+          expect(event.name).to eq new_event_valid_attributes[:name]
+        end
 
-  #   it 'renders the edit template' do
-  #     event = Event.create!(valid_attributes)
-  #     get :edit, id: event
-  #     expect(response).to render_template('edit')
-  #   end
+        it 'assigns @event' do
+          event = Event.create!(valid_event_attributes)
+          vehicle.events << event
+          patch :update, vehicle_id: vehicle, id: event, event: new_event_valid_attributes
+          expect(assigns(:event)).to eq event
+        end
 
-  #   it 'assigns @event' do
-  #     event = Event.create!(valid_attributes)
-  #     get :edit, id: event
-  #     expect(assigns(:event)).to eq event
-  #   end
-  # end #describe 'GET edit'
+        it 'redirects to the vehicle' do
+          event = Event.create!(valid_event_attributes)
+          vehicle.events << event
+          patch :update, vehicle_id: vehicle, id: event, event: new_event_valid_attributes
+          expect(response).to redirect_to(vehicle_path(vehicle))
+        end
+    end #context
 
-  # describe 'PATCH update' do
-  #   context 'with valid attributes' do
-  #     let(:new_attributes) {
-  #       { nickname: 'Car New Attributes', make: 'Yugo', model: 'ZZ', year: 1981, mileage: 30000, purchase_date: '1982-09-30'}
-  #     }
+    context 'with invalid attributes' do
+      it 'assigns @event' do
+        event = Event.create!(valid_event_attributes)
+        vehicle.events << event
+        patch :update, vehicle_id: vehicle, id: event, event: invalid_event_attributes
+        expect(assigns(:event)).to eq event
+      end
 
-  #     it 'updates the requested event' do
-  #       event = Event.create!(valid_attributes)
-  #       patch :update, id: event, event: new_attributes
-  #       event.reload
-  #       expect(event.nickname).to eq new_attributes[:nickname]
-  #     end
+      it 're-renders the edit template' do
+        event = Event.create!(valid_event_attributes)
+        vehicle.events << event
+        patch :update, vehicle_id: vehicle, id: event, event: invalid_event_attributes
+        expect(response).to render_template('edit')
+      end
+    end # context
+  end # 'PATCH update'
 
-  #     it 'assigns @event' do
-  #       event = Event.create!(valid_attributes)
-  #       patch :update, id: event, event: new_attributes
-  #       expect(assigns(:event)).to eq event
-  #     end
+  describe 'DELETE destroy' do
+    it 'destroys the requested comment' do
+      event = Event.create!(valid_event_attributes)
+      vehicle.events << event
+      expect {
+        delete :destroy, vehicle_id: vehicle, id: event
+      }.to change(Event, :count).by(-1)
+    end
 
-  #     it 'redirects to the event' do
-  #       event = Event.create!(valid_attributes)
-  #       patch :update, id: event, event: new_attributes
-  #       expect(response).to redirect_to event_path
-  #     end
-  #   end
-
-  #   context 'with invalid attributes' do
-  #     it 'assigns @event' do
-  #       event = Event.create!(valid_attributes)
-  #       patch :update, id: event, event: invalid_attributes
-  #       expect(assigns(:event)).to eq event
-  #     end
-
-  #     it 're-renders the edit template' do
-  #       event = Event.create!(valid_attributes)
-  #       patch :update, id: event, event: invalid_attributes
-  #       expect(response).to render_template('edit')
-  #     end
-  #   end
-  # end #describe 'PATCH update'
-
-  # describe 'DELETE destroy' do
-  #   it 'destroys the requested event' do
-  #     event = Event.create!(valid_attributes)
-  #     expect {
-  #       delete :destroy, id: event
-  #     }.to change(Event, :count).by(-1)
-  #   end
-
-  #   it 'redirects to the events list' do
-  #     event = Event.create!(valid_attributes)
-  #     delete :destroy, id: event
-  #     expect(response).to redirect_to events_path
-  #   end
-  # end #describe 'DELETE destroy'
+    it 'redirects to the vehicle list' do
+      event = Event.create!(valid_event_attributes)
+      vehicle.events << event
+      delete :destroy, vehicle_id: vehicle, id: event
+      expect(response).to redirect_to redirect_to(vehicle_path(vehicle))
+    end
+  end # describe 'DELETE destroy'
 
 end

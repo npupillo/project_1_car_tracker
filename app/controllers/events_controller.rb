@@ -1,3 +1,4 @@
+require 'pry-byebug'
 class EventsController < ApplicationController
   # set the vehicle instance for all actions
   before_action :set_vehicle
@@ -18,8 +19,18 @@ class EventsController < ApplicationController
 
   def create
     @event = @vehicle.events.new(event_params)
+
+# binding.pry
+    #GET the vendor id that we want to add to this event from the select dropdown in the form
+    @event.vendor = Vendor.find(params[:event][:vendor_id])
+    @event.category = Category.find(params[:event][:category_id])
+
+    # if params[:event][:vendor_id].present?
+    # end
+
     if @event.save
-      redirect_to vehicle_path(@vehicle)
+      redirect_to vehicle_path(@vehicle) #redirect to vehicle show
+      # redirect_to vehicles_path #redirect to vehicles index
     else
       render 'new'
     end
@@ -51,7 +62,7 @@ private
     @event = Event.find(params[:id])
   end
   def event_params
-    params.require(:event).permit(:name)
+    params.require(:event).permit(:name, :vehicle, :vendor, :category, :cost, :event_date, :due_date, :notes, vendors_attributes: [:id, :name, :address, :phone, :website, :hours, :notes], categories_attributes: [:id, :name])
   end
 
 end

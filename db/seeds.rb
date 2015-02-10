@@ -28,3 +28,4 @@ beigesav.events.create!(name: 'air filter', category: cat_repair, vendor: vend_s
 # #Create events for junker1
 junker1.events.create!(name: 'hit a wall', category: cat_repair, vendor: vend_squantum, cost: 300.00, event_date: '2014-09-01', due_date: '2014-09-01')
 junker1.events.create!(name: 'new roof', category: cat_repair, vendor: vend_bagnell, cost: 500.00, event_date: '2014-03-20', due_date: '2014-03-20')
+junker1.events.create!(name: 'new engine', category: cat_repair, vendor: vend_bagnell, cost: 2000.00, event_date: '2015-02-09', due_date: '2015-02-09')
