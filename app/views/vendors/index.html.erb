@@ -3,14 +3,14 @@
   <% @vendors.each do |v| %>
   <ul>
     <li>
-    <%= link_to 'Edit', edit_vendor_path(v)%> <br>
     Name: <%= v.name %><br>
     Address: <%= v.address %><br>
     Phone: <%= v.phone %><br>
     Website: <%= v.website %><br>
     Hours: <%= v.hours %><br>
+    <%= link_to 'Edit', edit_vendor_path(v), class: 'btn btn-default btn-xs'%>
     </li>
   </ul>
   <% end %>
 
-<%= link_to 'Create New Vendor', new_vendor_path %>
+<%= link_to 'Create New Vendor', new_vendor_path, class: 'btn btn-info btn-xs'%>
