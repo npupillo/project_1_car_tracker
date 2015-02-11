@@ -46,7 +46,7 @@ RSpec.describe EventsController do
     context 'with valid attributes' do
       it 'saves a new event' do
         expect {
-          post :create, event: valid_event_attributes, vehicle_id: vehicle
+          post :create, event: valid_event_attributes, vehicle_id: vehicle, vendor_id: vendor, category_id: category
         }.to change(Event, :count).by 1
       end
 
@@ -127,18 +127,22 @@ RSpec.describe EventsController do
         end
     end #context
 
-    context 'with invalid attributes' do
+        context 'with valid attributes' do
+      let(:new_event_invalid_attributes) {
+        { name: nil }
+      }
+
       it 'assigns @event' do
         event = Event.create!(valid_event_attributes)
         vehicle.events << event
-        patch :update, vehicle_id: vehicle, id: event, event: invalid_event_attributes
+        patch :update, vehicle_id: vehicle, id: event, event: new_event_invalid_attributes
         expect(assigns(:event)).to eq event
       end
 
       it 're-renders the edit template' do
         event = Event.create!(valid_event_attributes)
         vehicle.events << event
-        patch :update, vehicle_id: vehicle, id: event, event: invalid_event_attributes
+        patch :update, vehicle_id: vehicle, id: event, event: new_event_invalid_attributes
         expect(response).to render_template('edit')
       end
     end # context
