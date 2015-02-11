@@ -16,13 +16,14 @@
   <%= f.text_field :notes %> <br />
 
   <%= f.label :vendors, value: 'Select Vendor' %> <br />
-  <!-- Generate an html select, the list will be all Vendors -->
+  <!-- Generate an html select of all Vendors -->
   <%= f.collection_select :vendor_id, Vendor.all, :id, :name %> <br />
 
   <%= f.label :categories, value: 'Select Category' %> <br />
-  <%= f.collection_select :category_id, Category.all, :id, :name %> <br />
+  <!-- Generate an html select of all Categories -->
+  <%= f.collection_select :category_id, Category.all, :id, :name %>
 
-  <%= f.submit %>
+  <p><%= f.submit %></p>
 <% end %>
 
-<%= link_to 'Back', :back %>
+<%= link_to 'Back', :back, class: 'btn btn-primary btn-xs'%>
