@@ -10,9 +10,9 @@ beigesav = Vehicle.create!(nickname: 'BeigeSavage', make: 'Saab', model: '9000',
 greenmonster = Vehicle.create!(nickname: 'Green Monster', make: 'Yugo', model: 'ZZ', year: 1980, mileage: 75000, purchase_date: "1983-05-30")
 
 #Create vendors
-vend_bagnell = Vendor.create!(name: 'Bagnell Auto Supply')
-vend_squantum = Vendor.create!(name: 'Squantum Auto')
-vend_pep = Vendor.create!(name: 'Pep Boys')
+vend_bagnell = Vendor.create!(name: 'Bagnell Auto Supply', address: '100 Main Street Quincy MA', phone: '555-555-5555', website: 'http://www.bagnellauto.com', hours: '9-5')
+vend_squantum = Vendor.create!(name: 'Squantum Auto', address: '200 Main Street Quincy MA', phone: '666-666-6666', website: 'http://www.squantumauto.com', hours: '8-7')
+vend_pep = Vendor.create!(name: 'Pep Boys', address: '300 Main Street Quincy MA', phone: '777-777-7777', website: 'http://www.pepboys.com', hours: '9-8')
 
 # #Create categories
 cat_maint = Category.create!(name: 'maintenance')
@@ -27,7 +27,7 @@ roxanne.events.create!(name: 'new windshield', category: cat_repair, vendor: ven
 # #Create events for beigesavage
 beigesav.events.create!(name: 'replace brakes', category: cat_repair, vendor: vend_squantum, cost: 200.00, event_date: '2015-03-15', due_date: '2014-09-02')
 beigesav.events.create!(name: 'replace emergency brake', category: cat_repair, vendor: vend_squantum, cost: 75.00, event_date: '2015-04-25', due_date: '2015-01-01')
-beigesav.events.create!(name: 'air filter', category: cat_repair, vendor: vend_squantum, cost: 20.00, event_date: '2014-02-06', due_date: '2014-02-06')
+beigesav.events.create!(name: 'air filter', category: cat_repair, vendor: vend_squantum, cost: 20.00, event_date: '2015-02-02', due_date: '2015-02-02')
 
 
 # #Create events for greenmonster
