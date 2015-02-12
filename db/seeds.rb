@@ -22,7 +22,7 @@ cat_repair = Category.create!(name: 'repair')
 roxanne.events.create!(name: 'tune up', category: cat_maint, vendor: vend_squantum, cost: 90.00, event_date: '2015-11-05', due_date: '2015-11-05', notes: 'get new headlight bulbs' )
 roxanne.events.create!(name: 'oil change', category: cat_maint, vendor: vend_squantum, cost: 65.00, event_date: '2015-03-01', due_date: '2014-10-25', notes: "pay extra for synthetic oil, it's worth it" )
 roxanne.events.create!(name: 'new steel wheels', category: cat_repair, vendor: vend_bagnell, cost: 90.00, event_date: '2015-04-01', due_date: '2014-11-15', notes: 'free balance')
-roxanne.events.create!(name: 'new windshield', category: cat_repair, vendor: vend_pep, cost: 150.00, event_date: '2013-07-15', due_date: '2013-07-15', notes: 'free tire rotation')
+roxanne.events.create!(name: 'new windshield', category: cat_repair, vendor: vend_pep, cost: 150.00, event_date: '2014-12-30', due_date: '2014-12-30', notes: 'free tire rotation')
 
 # #Create events for beigesavage
 beigesav.events.create!(name: 'replace brakes', category: cat_repair, vendor: vend_squantum, cost: 200.00, event_date: '2015-03-15', due_date: '2014-09-02')
