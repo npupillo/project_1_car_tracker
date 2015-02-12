@@ -12,6 +12,13 @@ Keep your car well watered and fed! Track your past and future maintenance, repa
 - Show overdue maintenance
 - Show upcoming maintenance
 
+### User Stories:
+- Create, edit, & delete vehicles
+- Display total of overdue events & total of future events per  vehicle
+- Show all events per vehicle - a typical vehicle event category is a maintenance or a repair such as an oil change or a flat tire
+- Create, edit, & delete events
+- In each event, get the name of the vendor & category from their respective tables
+
 ## Pre-planning:
 ### Whiteboard Wireframes:
 ![image_1](https://github.com/npupillo/project_1_car_tracker/blob/master/preplanning_materials/image_1.jpg)

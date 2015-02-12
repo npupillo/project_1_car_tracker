@@ -1,7 +1,7 @@
-<h2>
+<h3>
   <%= link_to 'Vehicle', vehicles_path %>
   :<%= @vehicle.nickname %>
-</h2>
+</h3>
 
 <ul>
   <li>Make: <%= @vehicle.make %></li>
@@ -9,9 +9,9 @@
   <li>Year: <%= @vehicle.year %></li>
   <li>Mileage: <%= @vehicle.mileage %></li>
   <li>Purchase Date: <%= @vehicle.purchase_date %></li>
-  <li>Events: <%= @vehicle.events.count %></li>
-  <li>Vendors: <%= @vehicle.vendors.count %></li>
-  <li>Categories: <%= @vehicle.categories.count %></li>
+  <li>Total Events: <%= @vehicle.events.count %></li>
+  <li>Unique Vendors of Events: <%= @vehicle.vendors.uniq.count %></li>
+  <li>Unique Categories of Events: <%= @vehicle.categories.uniq.count %></li>
 </ul>
 
 
@@ -19,19 +19,24 @@
 <%= link_to 'Delete', vehicle_path(@vehicle), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default btn-xs'%>
 
 <hr>
-<!-- Show all events for this vehicle -->
+<!-- Show total number of events for this vehicle -->
 <h4>Total Events: <%= @vehicle.events.count %></h4>
+
 <%= link_to 'Create New Event', new_vehicle_event_path(@vehicle), class: 'btn btn-info btn-xs'%>
 
-   <%  @vehicle.events.each do |event| %>
-
+<!-- Show each event sorted by due_date -->
+<% @vehicle.events.sort { |a,b| a.due_date <=> b.due_date }.each do |event| %>
   <ul>
     <li>
     <span class="eventname">Name: <%= event.name %></span><br>
-    Overdue?: <%= event.overdue? %><br>
+
+    <!-- set css class label to orange warning if overdue is YES -->
+   Overdue?: <span class="label <%= event.overdue? == 'YES' ? 'label-warning' : 'label-success' %>" >
+   <%= event.overdue? %>
+   </span><br>
     Due Date: <%= event.due_date %><br>
     Event Date: <%= event.event_date %><br>
-    Cost: <%= event.cost %><br>
+    Cost: <%= number_to_currency(event.cost) %><br>
     Notes: <%= event.notes %><br>
     Vendor: <%= event.vendor.name %><br>
     Category: <%= event.category.name %><br>
