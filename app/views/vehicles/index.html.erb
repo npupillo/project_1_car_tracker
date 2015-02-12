@@ -11,8 +11,7 @@
       <th>Nickname</th>
       <th>Make</th>
       <th>Model</th>
-      <th>All Events</th>
-      <th>Past Events</th>
+      <th>Overdue Events</th>
       <th>Future Events</th>
     </tr>
   </thead>
@@ -23,9 +22,21 @@
         <td><%= link_to v.nickname, vehicle_path(v) %></td>
         <td><%= v.make %></td>
         <td><%= v.model %></td>
-        <td><%= v.events.count %></td>
-        <td><%= v.events.count %></td>
-        <td><%= v.events.count %></td>
+        <td> <!-- tally Overdue Events -->
+          <% overdue_event_counter = 0 %>
+          <% v.events.each do |e| %>
+            <% overdue_event_counter+=1 if e.overdue? == 'YES' %>
+          <% end %>
+          <%= overdue_event_counter %>
+        </td>
+        <td> <!-- tally Future Events -->
+          <% future_event_counter = 0 %>
+          <% v.events.each do |e| %>
+            <% future_event_counter+=1 if e.future_event == 'YES' %>
+          <% end %>
+          <%= future_event_counter %>
+        </td>
+
       </tr>
     <% end %>
   </tbody>
