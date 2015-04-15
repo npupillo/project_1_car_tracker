@@ -4,7 +4,7 @@
 
 ## Project 1: Car Tracker
 - Ruby on Rails
-- Deployed to Heroku: <a href="http://cartracker.herokuapp.com" target="_blank">http://cartracker.herokuapp.com</a>
+- Deployed to Heroku: http://cartracker.herokuapp.com
 
 ## Description:
 Keep your car well watered and fed! Track your past and future maintenance, repairs, cost and vehicle repair vendors.
