@@ -1,6 +1,10 @@
 ![General Assembly Logo](http://i.imgur.com/ke8USTq.png)
 
-# GA WDI Project 1: Car Tracker
+# GA WDI
+
+## Project 1: Car Tracker
+- Ruby on Rails
+- Deployed to Heroku: http://cartracker.herokuapp.com
 
 ## Description:
 Keep your car well watered and fed! Track your past and future maintenance, repairs, cost and vehicle repair vendors.
